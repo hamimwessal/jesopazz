@@ -1,0 +1,380 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#F7F5FF;color:#1C1A3A}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Coach - Sbaglia qui. Riesci là.</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F7F5FF; --surface:#FFFFFF; --ink:#1C1A3A; --muted:#5E5C7A; --line:#E2E2EE;
+  --mandarino:#FF5F2E; --mandarino-d:#D94C25; --oro:#FFC63D; --oro-d:#D9A21A;
+  --menta:#198278; --menta-bg:#DDF3F0; --lavanda:#C2B6FF; --lavanda-bg:#EFEAFF; --chip:#EAE6FF;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#13122A; --surface:#1E1C3B; --ink:#F7F5FF; --muted:#A9A7C6; --line:#33305A;
+  --mandarino:#FF5F2E; --mandarino-d:#D94C25; --oro:#FFC63D; --oro-d:#D9A21A;
+  --menta:#198278; --menta-bg:#163D2C; --lavanda:#C2B6FF; --lavanda-bg:#33305A; --chip:#2A2850; color-scheme:dark}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4.5vw,40px);font-weight:700}
+h3{font-size:20px;font-weight:600}
+p{margin:0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--mandarino)}
+.lead{color:var(--muted);font-size:18px;max-width:62ch}
+section{padding-block:56px}
+.sec-head{display:grid;gap:10px;margin-bottom:28px}
+.hyp{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--ink);vertical-align:middle}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:2px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;font-size:24px;color:var(--ink);text-decoration:none}
+nav.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav.links a{font-weight:600;font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:10px;white-space:nowrap}
+nav.links a:hover{background:var(--chip);color:var(--ink)}
+@media (max-width:720px){nav.links{display:none}}
+
+.btn{--c:var(--mandarino);--d:var(--mandarino-d);display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:.02em;color:#fff;background:var(--c);border:0;border-radius:16px;padding:14px 22px;box-shadow:0 4px 0 var(--d);cursor:pointer;text-decoration:none;transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--d)}
+.btn:focus-visible,.opt:focus-visible,.copy:focus-visible{outline:3px solid var(--oro);outline-offset:3px}
+.btn.ghost{--c:var(--surface);--d:var(--line);color:var(--ink);border:2px solid var(--line)}
+.btn.ok{--c:var(--menta);--d:#12635B}
+.btn.ko{--c:var(--lavanda);--d:#A092E6;color:var(--ink)}
+.btn[disabled]{--c:var(--line);--d:var(--line);color:var(--muted);cursor:not-allowed}
+
+.hero{padding-block:48px 24px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(40px,7vw,68px);font-weight:800;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--mandarino)}
+.hero .copy-col{display:grid;gap:22px;min-width:0}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.stats-row{display:flex;flex-wrap:wrap;gap:22px;color:var(--muted);font-size:14px}
+.stats-row b{display:block;font-family:var(--display);font-size:26px;color:var(--ink)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+
+.phone{width:100%;max-width:370px;margin-inline:auto;background:var(--surface);border:3px solid var(--line);border-radius:36px;padding:18px 16px 20px;box-shadow:0 10px 0 var(--line);display:grid;gap:14px}
+.lesson-top{display:flex;align-items:center;gap:10px}
+.bar{flex:1;height:14px;background:var(--chip);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ink);border-radius:99px;transition:width .35s ease}
+.hearts{display:flex;align-items:center;gap:4px;font-family:var(--display);font-weight:600;color:var(--ink)}
+.speaker{display:flex;gap:10px;align-items:flex-end}
+.avatar{flex:none;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:20px;color:#fff}
+.bubble{position:relative;background:var(--bg);border:2px solid var(--line);border-radius:18px 18px 18px 4px;padding:12px 14px;font-size:15px;min-width:0}
+.bubble small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:2px}
+.qtitle{font-family:var(--display);font-weight:600;font-size:19px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;font:inherit;font-size:15px;color:var(--ink);background:var(--surface);border:2px solid var(--line);border-bottom-width:4px;border-radius:14px;padding:12px 14px;cursor:pointer}
+.opt:hover{background:var(--bg)}
+.opt.sel{border-color:var(--mandarino);background:color-mix(in srgb,var(--mandarino) 10%,var(--surface))}
+.opt.right{border-color:var(--menta);background:var(--menta-bg)}
+.opt.wrong{border-color:var(--lavanda);background:var(--lavanda-bg)}
+.sheet{border-radius:16px;padding:14px;display:grid;gap:10px}
+.sheet.ok{background:var(--menta-bg)}
+.sheet.ko{background:var(--lavanda-bg)}
+.sheet h4{margin:0;font-family:var(--display);font-size:18px;color:var(--ink)}
+.sheet p{font-size:14px;color:var(--ink)}
+.sheet .ts{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.listen{font:inherit;font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:6px;color:var(--mandarino);background:none;border:0;padding:0;cursor:pointer;margin-top:6px}
+.end{display:grid;gap:14px;text-align:center;justify-items:center}
+.end-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+.end-stats div{border:2px solid var(--line);border-radius:14px;padding:10px 4px}
+.end-stats b{display:block;font-family:var(--display);font-size:22px}
+.end-stats span{font-size:12px;color:var(--muted)}
+.skills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.chip{font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--chip);color:var(--ink)}
+
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{display:grid;gap:8px;justify-items:start}
+.node{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:26px;color:#fff;background:var(--mandarino);box-shadow:0 5px 0 var(--mandarino-d)}
+.step:nth-child(2) .node{background:var(--oro);box-shadow:0 5px 0 var(--oro-d);color:var(--ink)}
+.step:nth-child(3) .node{background:var(--menta);box-shadow:0 5px 0 #12635B}
+.step:nth-child(4) .node{background:var(--ink);box-shadow:0 5px 0 var(--muted);color:var(--bg)}
+.step p{font-size:15px;color:var(--muted)}
+@media (max-width:760px){.path{grid-template-columns:1fr 1fr}}
+
+.league{background:var(--surface);border:2px solid var(--line);border-radius:22px;overflow:hidden}
+.league-head{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:2px solid var(--line)}
+.row{display:grid;grid-template-columns:32px 1fr auto auto;gap:12px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .pos{font-family:var(--display);font-weight:700;color:var(--muted)}
+.row.top3 .pos{color:var(--oro-d)}
+.row .who{display:flex;align-items:center;gap:10px;min-width:0}
+.row .who span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff;flex:none}
+.streak{display:flex;align-items:center;gap:4px;font-weight:700;color:var(--mandarino);font-size:14px}
+.xp{font-family:var(--mono);font-size:14px;min-width:64px;text-align:right}
+.mgr{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:start}
+.kpis{display:grid;gap:12px}
+.kpi{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:16px}
+.kpi b{display:block;font-family:var(--display);font-size:32px}
+.kpi span{color:var(--muted);font-size:14px}
+@media (max-width:820px){.mgr{grid-template-columns:1fr}}
+
+.plans{display:grid;grid-template-columns:repeat(1,1fr);gap:16px; max-width: 600px; margin: 0 auto;}
+.plan{background:var(--surface);border:2px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:12px;align-content:start}
+.plan.star{border-color:var(--mandarino);border-width:3px}
+.plan .price{font-family:var(--display);font-size:40px;font-weight:800}
+.plan .price small{font-size:15px;color:var(--muted);font-weight:500}
+.plan ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:4px}
+@media (max-width:820px){.plans{grid-template-columns:1fr}}
+
+.band{background:var(--surface);border-block:2px solid var(--line)}
+.icp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.icp div{display:grid;gap:4px}
+.icp dt{font-family:var(--display);font-weight:600;font-size:14px;color:var(--mandarino);text-transform:uppercase;letter-spacing:.06em}
+.icp dd{margin:0;font-size:15px}
+@media (max-width:760px){.icp{grid-template-columns:1fr}}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.metric{border:2px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:4px;background:var(--bg)}
+.metric .lab{font-family:var(--display);font-weight:600;font-size:14px;color:var(--muted)}
+.metric .val{font-family:var(--display);font-weight:800;font-size:30px}
+.metric .how{font-size:13px;color:var(--muted)}
+.metric.hl{border-color:var(--menta)} .metric.hl .val{color:var(--menta)}
+@media (max-width:820px){.metrics{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.metrics{grid-template-columns:1fr}}
+
+.budget{display:grid;gap:10px}
+.b-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) 96px;gap:14px;align-items:center}
+.b-row .name{font-weight:600;font-size:15px}
+.b-row .name small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.b-row .track{height:18px;background:var(--chip);border-radius:6px;overflow:hidden}
+.b-row .fill{height:100%;border-radius:6px}
+.b-row .amt{text-align:right;font-family:var(--mono)}
+.b-total{display:grid;grid-template-columns:1fr auto;padding-top:14px;margin-top:6px;border-top:2px solid var(--ink);font-family:var(--display);font-weight:800;font-size:20px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);margin-bottom:16px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+@media (max-width:620px){.b-row{grid-template-columns:1fr 90px}.b-row .track{grid-column:1/-1;grid-row:2}}
+
+.levers{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.lever{background:var(--surface);border:2px solid var(--line);border-radius:22px;padding:20px;display:grid;gap:10px;align-content:start}
+.lever .tag{justify-self:start;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
+.tag.dig{background:color-mix(in srgb,var(--mandarino) 18%,transparent);color:var(--mandarino-d)}
+.tag.fis{background:color-mix(in srgb,var(--oro) 30%,transparent);color:var(--ink)}
+.tag.mix{background:var(--menta-bg);color:var(--menta)}
+.lever ul{margin:0;padding-left:18px;font-size:15px;color:var(--ink);display:grid;gap:4px}
+.lever ul b{color:var(--ink)}
+.lever.wide{grid-column:1/-1}
+@media (max-width:760px){.levers{grid-template-columns:1fr}}
+
+footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:2px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.mascot{animation:bob 2.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.mascot{animation:none}.bar i{transition:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Logo SVG calcolato in base alla Brand Identity -->
+    <symbol id="pep" viewBox="0 0 64 64">
+      <path d="M 43.79 43.57 A 18 18 0 1 1 43.79 20.43" fill="none" stroke="currentColor" stroke-width="11.5" stroke-linecap="round"/>
+      <path d="M 20.17 53.07 L 7.74 53.50 L 10.28 44.32 Z" fill="currentColor"/>
+      <circle cx="50.7" cy="32" r="5.75" fill="#FF5F2E" />
+    </symbol>
+    <symbol id="flame" viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 1.5-4.5 3-6 0 2 1 3 2 3 0-3-1-6 1-9z" fill="currentColor"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg width="34" height="34" aria-hidden="true" style="color:var(--ink)"><use href="#pep"/></svg>coach</a>
+    <nav class="links" aria-label="Sezioni">
+      <a href="#come">Come funziona</a><a href="#prezzi">Prezzo</a><a href="#numeri">Business</a><a href="#budget">GTM & Budget</a><a href="#rischi">Rischi</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="copy-col">
+      <span class="eyebrow">Tocca a te.</span>
+      <h1>Sbaglia qui.<br><em>Riesci là.</em></h1>
+      <p class="lead">Il posto dove sbagliare non costa niente, e dove si vede quanto sei diventato bravo. Dieci minuti al giorno per allenare le trattative reali.</p>
+      <div class="cta-row">
+        <a class="btn" href="#game">Fai una prova ora</a>
+        <a class="btn ghost" href="#manager">La paga il datore di lavoro? Gira la mail al capo</a>
+      </div>
+      <div class="stats-row">
+        <div><b>10 min</b>di pratica</div>
+        <div><b>Voti veri</b>sulle capacità</div>
+        <div><b>Fondi</b>finanziabili</div>
+      </div>
+    </div>
+    <div class="phone" id="game" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="come" class="band">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Come funziona</span><h2>Dal listino alla lezione, in quattro passi</h2></div>
+    <div class="path">
+      <div class="step"><div class="node">1</div><h3>Carica</h3><p>L'azienda carica un listino, una procedura, una scheda prodotto. I migliori venditori aggiungono come lavorano.</p></div>
+      <div class="step"><div class="node">2</div><h3>Impara</h3><p>Un docente AI spiega a voce, in pillole da tre minuti. Puoi interromperlo e fargli domande.</p></div>
+      <div class="step"><div class="node">3</div><h3>Allenati</h3><p>Role play in video con un avatar che fa il cliente, il collega o il compratore che tira sul prezzo.</p></div>
+      <div class="step"><div class="node">4</div><h3>Sali di livello</h3><p>Il coach dà un voto legato al momento esatto della conversazione. La lezione dopo parte da lì.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="prezzi">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Il Prezzo</span><h2>Trasparente, chiaro e finanziabile</h2><p class="lead">L'ostacolo del prezzo è annullato. Le aziende pagano usando i fondi interprofessionali (Fondimpresa), dove ci sono 1,07 miliardi di euro non spesi che scadono in 2 anni.</p></div>
+    <div class="plans">
+      <div class="plan star"><span class="chip" style="justify-self:start;background:var(--mandarino);color:#fff">Per le PMI italiane</span><h3>Licenza Aziendale</h3><div class="price">18 € <small>a persona al mese</small></div>
+      <ul>
+        <li>Per team da 3 a 50 postazioni</li>
+        <li>Rinnovo automatico annuale in accordo con il cliente</li>
+        <li>Lezioni caricate direttamente dai vostri listini reali</li>
+        <li>Report Excel settimanali automatici all'HR</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="numeri" class="band">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">I Numeri per il Pitch</span><h2>Chi compra, il margine e perché l'economia scala</h2><p class="lead">Un budget iniziale di 50.000 € allocato per dimostrare che il sistema cresce in attivo dal giorno uno.</p></div>
+
+    <dl class="icp">
+      <div><dt>Il Target (ICP)</dt><dd>Proprietari e Responsabili HR in <b>12.600 medie imprese italiane</b>. Nelle imprese da 20-250 dipendenti decide il titolare (63%), sopra i 50 addetti l'HR compra senza gara.</dd></div>
+      <div><dt>La Leva d'Acquisto</dt><dd><b>Fondimpresa.</b> Le aziende hanno già accantonato circa 74€ a lavoratore l'anno che rischiano di scadere. Sbloccano l'acquisto senza toccare la cassa corrente.</dd></div>
+      <div><dt>La Proposta di Valore</dt><dd>«La formazione vera, allenata e oggettiva, pagata con i soldi che l'azienda deve comunque spendere per non perderli.»</dd></div>
+    </dl>
+    
+    <div class="metrics">
+      <div class="metric"><span class="lab">Costo per Cliente (CAC)</span><span class="val num">1.500 €</span><span class="how">Chiudendo 2 contratti ogni 5 incontri dal vivo.</span></div>
+      <div class="metric"><span class="lab">Ricavo annuo per cliente</span><span class="val num">3.672 €</span><span class="how">Mediana di 17 posti × 18 € × 12 mesi.</span></div>
+      <div class="metric"><span class="lab">Valore nel tempo (LTV)</span><span class="val num">5.141 €</span><span class="how">Al 70% di margine per 2 anni minimi.</span></div>
+      <div class="metric hl"><span class="lab">LTV ÷ CAC</span><span class="val num">3,4x</span><span class="how">Oltre la soglia critica, fino a 4,2x sui 21 posti.</span></div>
+      <div class="metric"><span class="lab">Clienti Anno 1</span><span class="val num">33 B2B</span><span class="how">Derivati dai 50.000 € di investimento mixato.</span></div>
+      <div class="metric"><span class="lab">Ricavi Anno 1</span><span class="val num">121.176 €</span><span class="how">Con 84.823 € di margine netto (al 70%).</span></div>
+      <div class="metric hl"><span class="lab">ROI Iniziale (Anno 1)</span><span class="val num">+69,6%</span><span class="how">Calcolato sul margine vs investimento.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Budget e Go To Market</span><h2>Come investiamo 50.000 € senza sprecare soldi</h2><p class="lead">Niente campagne fredde su LinkedIn o Meta, dove si acquisisce in perdita. Ci muoviamo dove il tasso di conversione è alto.</p></div>
+    <div class="legend"><span><i style="background:var(--menta)"></i>Partner</span><span><i style="background:var(--oro)"></i>Fisico</span><span><i style="background:var(--mandarino)"></i>Digitale & SEO</span><span><i style="background:var(--muted)"></i>Test Iniziale</span></div>
+    <div class="budget" id="budgetRows"></div>
+    <div class="b-total"><span>Totale</span><span class="num" id="budgetTotal"></span></div>
+    
+    <div class="levers" style="margin-top: 32px">
+      <div class="lever" style="border-color: var(--menta); border-width: 3px;">
+        <span class="tag mix" style="background: var(--menta-bg); color: var(--menta);">Il Canale Partner (25% Commissione)</span>
+        <h3>Chi ha già in mano i clienti</h3>
+        <p style="color:var(--ink)">Accordi stipulati con 8 società di formazione, enti titolati Fondimpresa e rivenditori di software HR (che gestiscono 9 clienti su 10). A loro riconosciamo il 25% del ricavato.</p>
+      </div>
+      <div class="lever" style="border-color: var(--oro); border-width: 3px;">
+        <span class="tag fis" style="background: color-mix(in srgb, var(--oro) 30%, transparent); color: var(--ink);">Canale Fisico (Milano)</span>
+        <h3>Cene e prova dal vivo del listino</h3>
+        <p style="color:var(--ink)">Incontri ristretti per 10 HR Manager o imprenditori dello stesso settore. Durante l'evento facciamo provare Coach dal vivo su un loro listino aziendale reale.</p>
+      </div>
+      <div class="lever wide" style="border-color: var(--mandarino); border-width: 3px;">
+        <span class="tag dig" style="background: color-mix(in srgb, var(--mandarino) 18%, transparent); color: var(--mandarino-d);">Canale Digitale (Vietato il freddo)</span>
+        <h3>SEO e Role Play Gratis</h3>
+        <p style="color:var(--ink)">Costruiamo landing page in chiave SEO per ogni domanda o obiezione di vendita. Offriamo un role play gratuito di 3 minuti direttamente sul sito, senza carta di credito, usando il modello bottom-up per spingere i dipendenti a segnalarlo all'HR.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rischi" class="band">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Dove si rompe (e come lo aggiustiamo)</span><h2>I due rischi maggiori del progetto</h2></div>
+    <div class="levers">
+      <div class="lever" style="border-color: var(--lavanda); border-width: 3px;">
+        <span class="tag" style="background:var(--lavanda-bg); color:var(--ink)">Rischio 1: Abbandono (Licenze vuote)</span>
+        <h3>Le persone smettono di usarlo</h3>
+        <p style="color:var(--ink)">Senza scadenze l'uso crolla al 23%. <br><br><b>La nostra soluzione:</b> Inseriamo allenamenti fissi in calendario ogni settimana (portando l'uso a oltre l'80% come fa Learnn) e mandiamo il report Excel dell'uso ogni lunedì all'HR in modo automatico, prima ancora che lo chieda.</p>
+      </div>
+      <div class="lever" style="border-color: var(--lavanda); border-width: 3px;">
+        <span class="tag" style="background:var(--lavanda-bg); color:var(--ink)">Rischio 2: Normative AI e Sindacati</span>
+        <h3>I punteggi ai lavoratori sono contestabili</h3>
+        <p style="color:var(--ink)">Assegnare voti AI automatizzati è ad alto rischio per l'AI Act e per i sindacati interni.<br><br><b>La nostra soluzione:</b> Il voto e la correzione restano privati e visibili solo al dipendente. L'azienda vede solo i log degli accessi (ore di pratica) e le medie aggregate per dipartimenti o gruppi di almeno 7 persone. Hosting su server in Europa e divieto assoluto di analisi delle emozioni facciali.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Coach · progetto per il Vibecoding Hackathon di Next Leaders, 24 ottobre 2026.</span>
+  </div>
+</footer>
+
+<script>
+const BUDGET=[
+  ["Canale Partner (25% comm.)","Accordi con 8 enti Fondimpresa e software HR",18000,"var(--menta)"],
+  ["Canale Fisico (Cene)","10 cene a Milano per HR dello stesso settore",15000,"var(--oro)"],
+  ["Canale Digitale (SEO)","Pagine per obiezioni e demo senza carta",8000,"var(--mandarino)"],
+  ["Video e Retargeting","Meta Ads (vietate ads a freddo)",6000,"var(--mandarino)"],
+  ["Primo Test (Go/No-Go)","2 incontri iniziali per validare il modello",3000,"var(--muted)"]
+];
+const max=Math.max(...BUDGET.map(b=>b[2]));
+const fmt=n=>n.toLocaleString("it-IT")+" €";
+document.getElementById("budgetRows").innerHTML=BUDGET.map(([n,s,v,c])=>
+ `<div class="b-row"><span class="name">${n}<small>${s}</small></span><div class="track"><div class="fill" style="width:${v/max*100}%;background:${c}"></div></div><span class="amt">${fmt(v)}</span></div>`).join("");
+document.getElementById("budgetTotal").textContent=fmt(BUDGET.reduce((a,b)=>a+b[2],0));
+
+const STEPS=[
+ {who:"Marta",ini:"MR",col:"#6C5CE7",role:"Ufficio acquisti · Ferri Logistica",line:"«Il vostro concorrente ci fa il 15% in meno. O ci venite incontro o al rinnovo cambiamo.»",
+  q:"Cosa rispondi?",opts:["«Va bene, vi facciamo il 15% anche noi.»","«Capisco. Oltre al prezzo, cosa vi ha convinto della loro offerta?»","«Il nostro prezzo è questo, è già il migliore sul mercato.»"],ok:1,
+  good:"Hai fatto parlare Marta prima di toccare il prezzo. Ora sai cosa le interessa davvero.",bad:"Hai ceduto prima di sapere il motivo. Chiedile cosa le piace dell'altra offerta.",skill:"Ascolto attivo"}
+];
+const G=document.getElementById("game");
+let i,hearts,choice,answered,correct;
+
+function start(){if(!G)return;i=0;hearts=3;correct=0;render()}
+function render(){
+  choice=null;answered=false;
+  const s=STEPS[i];
+  G.innerHTML=`
+   <div class="lesson-top"><div class="bar"><i style="width:${i/STEPS.length*100}%"></i></div></div>
+   <div class="speaker"><div class="avatar" style="background:${s.col}">${s.ini}</div>
+     <div class="bubble"><small>${s.who} · ${s.role}</small>${s.line}</div></div>
+   <p class="qtitle">${s.q}</p>
+   <div class="opts">${s.opts.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div>
+   <div id="fb"></div>
+   <button class="btn" id="go" disabled>Verifica</button>`;
+  requestAnimationFrame(()=>{const b=G.querySelector(".bar i");b.style.width=((i)/STEPS.length*100)+"%"});
+  G.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(answered)return;choice=+b.dataset.k;G.querySelectorAll(".opt").forEach(x=>x.classList.toggle("sel",x===b));G.querySelector("#go").disabled=false});
+  G.querySelector("#go").onclick=check;
+}
+function check(){
+  const s=STEPS[i],go=G.querySelector("#go");
+  if(!answered){
+    answered=true;const right=choice===s.ok;
+    G.querySelectorAll(".opt").forEach((b,k)=>{b.classList.remove("sel");if(k===s.ok)b.classList.add("right");else if(k===choice)b.classList.add("wrong")});
+    if(right)correct++;
+    G.querySelector(".bar i").style.width="100%";
+    G.querySelector("#fb").innerHTML=`<div class="sheet ${right?"ok":"ko"}"><h4>${right?"Ottimo!":"Quasi."}</h4><p>${right?s.good:s.bad}</p></div>`;
+    go.textContent=right?"Lezione completata":"Riprova la battuta";go.className="btn "+(right?"ok":"ko");
+  }else{
+    if(choice!==s.ok){ start(); return; }
+    finish();
+  }
+}
+function finish(){
+  G.innerHTML=`<div class="end" style="background:var(--oro); padding:24px; border-radius:24px;">
+    <svg class="mascot" width="110" height="110" style="color:var(--ink)"><use href="#pep"/></svg>
+    <span class="eyebrow" style="color:var(--ink)">BRAVO!</span>
+    <h3 style="font-size:24px; color:var(--ink)">Hai gestito l'obiezione</h3>
+    <p style="color:var(--ink);font-size:15px;margin-top:10px">Sei pronto per il livello successivo. Fai provare l'app ai tuoi colleghi.</p>
+    <button class="btn" id="re" style="background:var(--ink);color:var(--surface);margin-top:16px">Gira la mail al tuo capo</button></div>`;
+}
+start();
+</script>
+
+</body></html>
